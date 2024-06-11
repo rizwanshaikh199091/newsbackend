@@ -16,6 +16,8 @@ exports.register = async (req, res) => {
       name,
       email,
       password: bcrypt.hashSync(password, 10),
+      preferredCategories: ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'],
+      preferredSources:['News API', 'The Guardian', 'OpenNews']
     });
 
     await user.save();
