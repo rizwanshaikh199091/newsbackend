@@ -3,7 +3,6 @@ const { startOfDay, endOfDay } = require('date-fns');
 
 exports.fetchNews = async (req, res) => {
   const { query, startDate, endDate, category, sources, limit = 10, offset = 0 } = req.query;
-  console.log("source", sources.join(','));
   const newsApiQuery = query ? `&q=${query}` : '';
   const newsApiCategory = category ? `&category=${category.join(',')}` : '';
 
@@ -20,7 +19,6 @@ exports.fetchNews = async (req, res) => {
 
   try {
     if (!sources || sources.includes('News API')) {
-      console.log("newsApiUrl", newsApiUrl);
       const newsApiResponse = await axios.get(newsApiUrl);
       if (newsApiResponse.data.articles) {
         newsApiResponse.data.articles.forEach(article => {
